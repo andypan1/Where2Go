@@ -5,11 +5,11 @@
 }
 
 :root {
-    --theme-color: #4069aa; /* Default theme color */
+    --theme-color: #E9967A; /* Default theme color */
 }
 
 body{
-    background-color: black;
+    background-image: url(https://getwallpapers.com/wallpaper/full/9/f/e/1319870-best-earth-from-space-hd-wallpaper-1920x1080-photos.jpg);
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
@@ -76,6 +76,7 @@ input::placeholder{
     min-height: 25vh;
     max-width: 100vw;
     place-items: center end;
+    margin-top: -50px;
 }
 
 #map{
@@ -173,3 +174,25 @@ button{
     background-color: #00693E; 
 }
 
+.marker {
+    background-image: url('https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-512.png');
+    background-size: cover;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.mapboxgl-popup {
+    max-width: 200px;
+    width: 80px; 
+}
+.mapboxgl-popup-content {
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    color: black;
+}
+
+.mapboxgl-popup-close-button {
+    display: none;
+}
