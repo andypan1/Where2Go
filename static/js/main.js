@@ -79,14 +79,12 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibXlzdGlja3JhdCIsImEiOiJjbTAxZmRmem8wcjdhMnFwd
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v10',
     projection: 'globe',
-    center: [280.01, 20], // starting position
+    center: [280.01, 20], 
     zoom: 2,
 });
 
 const reset = document.getElementById('reset');
-
 map.setMinZoom(2); 
-
 reset.onclick= ()=>{
   map.easeTo({
     zoom: 2,
@@ -103,8 +101,6 @@ map.on('style.load', () => {
 });
 
 // The following values can be changed to control rotation speed:
-
-// At low zooms, complete a revolution every two minutes.
 const secondsPerRevolution = 120;
 const maxSpinZoom = 5;
 const slowSpinZoom = 3;
@@ -173,6 +169,7 @@ document.getElementById('themeButton').addEventListener('click', function() {
       dropdown.classList.add('show');
   }
 });
+
 function changeThemeColor(color) {
   document.documentElement.style.setProperty('--theme-color', color);
 }
@@ -184,3 +181,4 @@ document.querySelectorAll('.color-option').forEach(option => {
   });
 });
 //END
+

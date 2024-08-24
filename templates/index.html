@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where2Go</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+
+
+
+<body>
+    <header>
+        <h1>Where2Go?</h1>
+        <h2>Where would you like to visit today?</h2>
+        <div id ="userInput">
+            <input type="text" id = "depart" placeholder= "Departure City" required>
+        </div>
+        <div id ="userInput">
+            <input type="text" id = "arrive" placeholder= "Where to?" required>
+        </div>
+        <button onclick="validateInputs()" class = "schBtn">Search</button>
+    </header>
+    <section class="content">
+        <div class="wrapper">
+            <div class="slider">
+                <div id="flights" class="slide">
+                    <div class="label"><u>Flights</u></div>
+                    <div class="showFlights">
+                        <div class="aflight">
+                            <div class="title"></div>
+                            <div class="details"></div>
+                        </div>
+                        <div class="aflight">
+                            <div class="title"></div>
+                            <div class="details"></div>
+                        </div>
+                        <div class="aflight">
+                            <div class="title"></div>
+                            <div class="details"></div>
+                        </div>
+                        <div class="aflight">
+                            <div class="title"></div>
+                            <div class="details"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="hotels" class="slide">
+                    <div class="label"><u>Accommodations</u></div>
+                    <div class="showHotels">
+
+                    </div>
+                </div>
+                <div id="things" class="slide">
+                    <div class="label"><u>Experiences</u></div>
+                    <div class="showThings"></div>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <a href="#flights"></a>
+                <a href="#hotels"></a>
+                <a href="#things"></a>
+            </div>
+        </div>
+    </section>
+    <section class="globe">
+        <div id="map-container">
+            <div id="map"></div>
+            <div id="shadow-overlay"></div>
+        </div>
+        <button id="reset">Reset Map </button>
+    </section>
+    <div class="hover">
+        <button id="themeButton" class="btn">Change Theme</button>
+        <div class="dropdown-content">
+            <div class="color-option" data-color="#E9967A"></div> 
+            <div class="color-option" data-color="#4069aa"></div> 
+            <div class="color-option" data-color="#00693E"></div> 
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function validateInputs() {
+        const depart = document.getElementById('depart').value.trim();
+        const arrive = document.getElementById('arrive').value.trim();
+        if (depart === '' || arrive === '') {
+            alert('Please fill in both fields.');
+            return;
+        }
+
+        performPost();
+    }
+    function performPost(){
+        var departValue = $('#depart').val();
+        var arriveValue = $('#arrive').val();
+        $.ajax({
+            type : "POST",
+            url : "{{ url_for ('getInputs') }}",
+            data :{
+                d : $('#depart').val(),
+                a : $('#arrive').val(),
+            },
+        })
+    }
+</script>
+</html>
